@@ -23,6 +23,7 @@ const duplicateKeys = (obj) => {
   newObj.corbuReviews = obj.reviews;
   newObj.corbuMap = obj.mapSection;
   newObj.corbuFooter = obj.corbuFooter || obj.footer;
+  newObj.officialManagement = obj.officialManagement;
   newObj.corbuRecommendations = {
     title: "探索更多",
     attractionsTitle: "附近景点",

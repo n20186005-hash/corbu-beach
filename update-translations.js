@@ -97,6 +97,10 @@ const zhContent = {
     "warningTime": "由于地处自然保护区且无照明设施，建议在日出至日落期间游览。",
     "tip": "请务必遵守保护区法规，做到无痕游览。"
   },
+  "officialManagement": {
+    "title": "关于科尔布海滩",
+    "text": "科尔布海滩由多瑙河三角洲生物圈保护区管理局（ARBDD）严格管理与维护。作为罗马尼亚黑海沿岸乃至整个欧洲最重要的原始生态海岸之一，海滩承载着极高的生态与自然保护价值。海滩周边的珍稀鸟类栖息地和沙丘植被由罗马尼亚环境保护机构及当地社区共同监督与保护。"
+  },
   "tickets": {
     "title": "门票价格",
     "outdoor": "准入规定",
@@ -430,6 +434,10 @@ const enContent = {
     "warning": "Notice",
     "warningTime": "Due to being in a nature reserve with no lighting, visiting during daylight hours is recommended.",
     "tip": "Please follow reserve regulations and practice Leave No Trace principles."
+  },
+  "officialManagement": {
+    "title": "About Corbu Beach",
+    "text": "Corbu Beach is strictly managed and maintained by the Danube Delta Biosphere Reserve Authority (ARBDD). As one of the most important pristine ecological coastlines along the Romanian Black Sea and throughout Europe, the beach carries immense ecological and nature conservation value. The rare bird habitats and dune vegetation surrounding the beach are jointly monitored and protected by Romanian environmental protection agencies and local communities."
   },
   "tickets": {
     "title": "Ticket Prices",

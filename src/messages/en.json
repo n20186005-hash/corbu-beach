@@ -94,6 +94,10 @@
     "warningTime": "Due to being in a nature reserve with no lighting, visiting during daylight hours is recommended.",
     "tip": "Please follow reserve regulations and practice Leave No Trace principles."
   },
+  "officialManagement": {
+    "title": "About Corbu Beach",
+    "text": "Corbu Beach is strictly managed and maintained by the Danube Delta Biosphere Reserve Authority (ARBDD). As one of the most important pristine ecological coastlines along the Romanian Black Sea and throughout Europe, the beach carries immense ecological and nature conservation value. The rare bird habitats and dune vegetation surrounding the beach are jointly monitored and protected by Romanian environmental protection agencies and local communities."
+  },
   "tickets": {
     "title": "Ticket Prices",
     "outdoor": "Entry Rules",

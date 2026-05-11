@@ -41,14 +41,15 @@ export default function LanguageToggle() {
     }
     
     // Construct new path
+    // Remove duplicate slashes just in case
     const pathWithoutLocale = segments.length > 0 ? `/${segments.join('/')}` : '/';
     
-    // Navigate
-    if (next === routing.defaultLocale) {
-      router.push(pathWithoutLocale);
-    } else {
-      router.push(`/${next}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`);
-    }
+    // Navigate using browser to force a full reload (which helps avoid some next-intl navigation state issues in static builds)
+    const newPath = next === routing.defaultLocale 
+      ? pathWithoutLocale 
+      : `/${next}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`;
+      
+    window.location.href = newPath;
   }
 
   return (

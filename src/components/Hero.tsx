@@ -8,7 +8,7 @@ export default function Hero() {
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src="/gallery/images (1).jpg"
+          src="/gallery/corbu-beach-5.jpg"
           alt="Corbu Beach"
           className="w-full h-full object-cover"
         />

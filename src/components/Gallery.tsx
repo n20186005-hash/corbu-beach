@@ -4,23 +4,23 @@ import { useTranslations, useMessages } from 'next-intl';
 import { useState, useCallback } from 'react';
 
 export default function Gallery() {
-  const t = useTranslations('gallery');
+  const t = useTranslations('corbuGallery');
   const messages = useMessages() as any;
-  const captions = (messages?.gallery?.captions || []) as string[];
+  const captions = (messages?.corbuGallery?.captions || []) as string[];
   
   const photos = [
-    { src: '/gallery/corbu-beach-1.jpg', alt: captions[0] || 'Warsaw Barbican Panoramic View' },
-    { src: '/gallery/corbu-beach-2.jpg', alt: captions[1] || 'Semicircular Fortress Facade' },
-    { src: '/gallery/corbu-beach-3.jpg', alt: captions[2] || 'Red Brick Architecture' },
-    { src: '/gallery/corbu-beach-4.jpg', alt: captions[3] || 'Medieval Arched Passages' },
-    { src: '/gallery/corbu-beach-5.jpg', alt: captions[4] || 'Ancient Wall Path' },
-    { src: '/gallery/corbu-beach-6.jpg', alt: captions[5] || 'Old Town Street Views' },
-    { src: '/gallery/corbu-beach-7.jpg', alt: captions[6] || 'Dusk Atmosphere' },
-    { src: '/gallery/corbu-beach-8.jpg', alt: captions[7] || 'Heritage Detail' },
-    { src: '/gallery/corbu-beach-9.jpg', alt: 'Warsaw Barbican' },
-    { src: '/gallery/corbu-beach-10.jpg', alt: 'Old Town Walls' },
-    { src: '/gallery/corbu-beach-11.jpg', alt: 'Fortress Architecture' },
-    { src: '/gallery/corbu-beach-12.jpg', alt: 'Heritage Scenery' },
+    { src: '/gallery/corbu-beach-1.jpg', alt: captions[0] || 'Corbu Beach Panorama' },
+    { src: '/gallery/corbu-beach-2.jpg', alt: captions[1] || 'Pristine Shell Beach' },
+    { src: '/gallery/corbu-beach-3.jpg', alt: captions[2] || 'Clear Black Sea Waters' },
+    { src: '/gallery/corbu-beach-4.jpg', alt: captions[3] || 'Sand Dunes & Vegetation' },
+    { src: '/gallery/corbu-beach-5.jpg', alt: captions[4] || 'Coastal Landscape' },
+    { src: '/gallery/corbu-beach-6.jpg', alt: captions[5] || 'Sunset View' },
+    { src: '/gallery/corbu-beach-7.jpg', alt: captions[6] || 'Natural Beauty' },
+    { src: '/gallery/corbu-beach-8.jpg', alt: captions[7] || 'Ecological Wilderness' },
+    { src: '/gallery/corbu-beach-9.jpg', alt: 'Wild Beach Scenery' },
+    { src: '/gallery/corbu-beach-10.jpg', alt: 'Black Sea Coast' },
+    { src: '/gallery/corbu-beach-11.jpg', alt: 'Nature Reserve' },
+    { src: '/gallery/corbu-beach-12.jpg', alt: 'Pristine Coastline' },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -52,7 +52,7 @@ export default function Gallery() {
 
           <div className="relative">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-              {photos.slice(0, 8).map((photo, i) => (
+              {photos.map((photo, i) => (
                 <div
                   key={i}
                   className={`gallery-item relative group cursor-pointer ${i === 0 ? 'col-span-2 row-span-2' : ''}`}

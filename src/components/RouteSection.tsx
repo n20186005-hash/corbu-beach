@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 export default function RouteSection() {
   const t = useTranslations('route');
 
-  const steps = Array.from({ length: 8 }, (_, i) => i + 1);
+  const steps = Array.from({ length: 6 }, (_, i) => i + 1);
   const supplements = Array.from({ length: 5 }, (_, i) => i);
 
   return (

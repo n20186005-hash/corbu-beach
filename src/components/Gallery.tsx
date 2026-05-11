@@ -98,7 +98,7 @@ export default function Gallery() {
 
             <div className="flex justify-center mt-6 gap-4 items-center">
               <a
-                href="https://maps.app.goo.gl/fe39pfZjSN57RWhF8"
+                href="https://maps.app.goo.gl/DNWLjcbrU9ps53RQ8"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm hover:underline"

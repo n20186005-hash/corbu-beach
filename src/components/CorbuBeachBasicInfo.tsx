@@ -22,7 +22,6 @@ export default function CorbuBeachBasicInfo() {
           <InfoCard title={t('country')} value={t('countryValue')} />
           <InfoCard title={t('city')} value={t('cityValue')} />
           <InfoCard title={t('googleRating')} value="4.4/5 (5,399)" />
-          <InfoCard title={t('phone')} value={t('phoneValue')} />
           <div className="md:col-span-2">
             <InfoCard title={t('address')} value={t('addressValue')} />
           </div>

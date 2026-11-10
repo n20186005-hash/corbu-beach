@@ -10,10 +10,14 @@ The source pins Next.js 15.5.29, next-intl 4.9.2, OpenNext 1.20.16 and
 Wrangler 4.160.0 in the npm lockfile.
 
 Run `npm ci`, then `npm run typecheck`, `npm run lint` and `npm run check:content`.
-`npm run build` remains the Next.js build. `npm run build:worker` packages the app
-with the pinned OpenNext adapter; `npm run preview:local` runs the native local
-Worker. Wrangler's custom build invokes that packaging step before its normal
-`npx wrangler preview` or `npx wrangler deploy` command.
+`npm run build` produces the complete native OpenNext Worker and compiled config.
+Its explicit `buildCommand` invokes `npm run build:next` for the Next-only step,
+so the adapter does not recursively call the main build script. `build:worker`
+aliases the complete build; `preview:local` runs the native local Worker.
+
+The hosting build must finish before `npx wrangler deploy`: Wrangler delegates
+OpenNext deployments before its custom build hook. The source custom build still
+supports `npx wrangler preview` and local Worker development.
 
 The site does not use ISR or cache revalidation, so the adapter uses its native
 dummy cache and queue implementations. Preview bindings intentionally omit the

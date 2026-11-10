@@ -6,7 +6,7 @@ export default function Footer() {
   const messages = useMessages() as any;
   const heroTitle = messages?.corbuHero?.title || 'Corbu Beach';
   const locale = useLocale();
-  const prefix = locale === 'en' ? '' : `/${locale}`;
+  const prefix = locale === 'zh' ? '' : `/${locale}`;
 
   return (
     <footer
@@ -29,11 +29,11 @@ export default function Footer() {
               <a href="https://www.cjc.ro/" target="_blank" rel="noopener noreferrer" className="hover:underline text-sm" style={{ color: 'var(--accent)' }}>
                 Consiliul Județean Constanța
               </a>
-              <a href="https://www.primaria-navodari.ro/" target="_blank" rel="noopener noreferrer" className="hover:underline text-sm" style={{ color: 'var(--accent)' }}>
-                Primăria Năvodari
+              <a href="https://ddbra.ro/" target="_blank" rel="noopener noreferrer" className="hover:underline text-sm" style={{ color: 'var(--accent)' }}>
+                ARBDD
               </a>
-              <a href="https://www.blueflag.global/" target="_blank" rel="noopener noreferrer" className="hover:underline text-sm" style={{ color: 'var(--accent)' }}>
-                Blue Flag
+              <a href="https://permise.ddbra.ro/" target="_blank" rel="noopener noreferrer" className="hover:underline text-sm" style={{ color: 'var(--accent)' }}>
+                ARBDD permits
               </a>
               <a href="https://patrimoniu.ro/" target="_blank" rel="noopener noreferrer" className="hover:underline text-sm" style={{ color: 'var(--accent)' }}>
                 CIMEC

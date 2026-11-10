@@ -1,12 +1,14 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useMessages, useTranslations } from 'next-intl';
 
 export default function RouteSection() {
   const t = useTranslations('route');
 
-  const steps = Array.from({ length: 6 }, (_, i) => i + 1);
-  const supplements = Array.from({ length: 5 }, (_, i) => i);
+  const messages = useMessages();
+  const route = messages.route as { steps: string[]; supplements: string[] };
+  const steps = route.steps;
+  const supplements = route.supplements;
 
   return (
     <section className="section-padding" style={{ background: 'var(--bg-secondary)' }}>
@@ -31,11 +33,11 @@ export default function RouteSection() {
           />
 
           <div className="space-y-6">
-            {steps.map((step) => (
+            {steps.map((description, index) => (
               <RouteStep
-                key={step}
-                step={step}
-                description={t(`steps.${step - 1}` as any)}
+                key={description}
+                step={index + 1}
+                description={description}
               />
             ))}
           </div>
@@ -50,10 +52,10 @@ export default function RouteSection() {
             {t('supplementsTitle') || '游览须知'}
           </h3>
           <ul className="space-y-3">
-            {supplements.map((i) => (
-              <li key={i} className="flex items-start gap-3">
+            {supplements.map((notice) => (
+              <li key={notice} className="flex items-start gap-3">
                 <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: 'var(--accent)' }} />
-                <span style={{ color: 'var(--text-secondary)' }}>{t(`supplements.${i}` as any)}</span>
+                <span style={{ color: 'var(--text-secondary)' }}>{notice}</span>
               </li>
             ))}
           </ul>

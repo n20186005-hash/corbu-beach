@@ -1,29 +1,14 @@
+import { pageMetadata } from '@/lib/seo';
 import { setRequestLocale } from 'next-intl/server';
 import { useTranslations, useLocale, useMessages } from 'next-intl';
 import type { Metadata } from 'next';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  const baseUrl = 'https://warsawbarbican.info';
-  const zhUrl = `${baseUrl}/privacy-policy`;
-  const enUrl = `${baseUrl}/en/privacy-policy`;
-  const selfUrl = locale === 'zh' ? zhUrl : enUrl;
-
-  return {
-    alternates: {
-      canonical: selfUrl,
-      languages: {
-        'zh': zhUrl,
-        'en': enUrl,
-        'x-default': zhUrl,
-      },
-    },
-  };
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const {locale} = await params;
+  const messages = (await import(`@/messages/${locale === 'en' ? 'en' : 'zh'}.json`)).default;
+  return pageMetadata(locale, '/privacy-policy', messages.privacy.title + ' | Corbu Beach', locale === 'en' ? 'How the Corbu Beach guide handles browser storage, hosting information and external resources.' : '了解科尔布海滩指南的浏览器存储、托管信息及外部资源。');
 }
+
 
 function PrivacyContent() {
   const t = useTranslations('privacy');

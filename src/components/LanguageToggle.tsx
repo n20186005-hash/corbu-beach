@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { routing, type Locale } from '@/i18n/routing';
 import { useState, useRef, useEffect } from 'react';
 
@@ -12,7 +12,6 @@ const labels: Record<string, string> = {
 
 export default function LanguageToggle() {
   const locale = useLocale();
-  const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -44,12 +43,12 @@ export default function LanguageToggle() {
     // Remove duplicate slashes just in case
     const pathWithoutLocale = segments.length > 0 ? `/${segments.join('/')}` : '/';
     
-    // Navigate using browser to force a full reload (which helps avoid some next-intl navigation state issues in static builds)
-    const newPath = next === routing.defaultLocale 
-      ? pathWithoutLocale 
-      : `/${next}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`;
+    // The explicit locale prefix lets middleware update the locale cookie
+    // before redirecting the default language to its unprefixed canonical URL.
+    // A full navigation also works before any client router cache is refreshed.
+    const newPath = `/${next}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`;
       
-    window.location.href = newPath;
+    window.location.href = newPath + window.location.search + window.location.hash;
   }
 
   return (
@@ -61,7 +60,7 @@ export default function LanguageToggle() {
           background: 'var(--tag-bg)',
           color: 'var(--tag-text)',
         }}
-        aria-label="Switch language"
+        aria-label="Switch language" aria-expanded={open}
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="10"/>

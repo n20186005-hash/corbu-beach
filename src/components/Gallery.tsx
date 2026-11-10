@@ -17,10 +17,10 @@ export default function Gallery() {
     { src: '/gallery/corbu-beach-6.jpg', alt: captions[5] || 'Sunset View' },
     { src: '/gallery/corbu-beach-7.jpg', alt: captions[6] || 'Natural Beauty' },
     { src: '/gallery/corbu-beach-8.jpg', alt: captions[7] || 'Ecological Wilderness' },
-    { src: '/gallery/corbu-beach-9.jpg', alt: 'Wild Beach Scenery' },
-    { src: '/gallery/corbu-beach-10.jpg', alt: 'Black Sea Coast' },
-    { src: '/gallery/corbu-beach-11.jpg', alt: 'Nature Reserve' },
-    { src: '/gallery/corbu-beach-12.jpg', alt: 'Pristine Coastline' },
+    { src: '/gallery/corbu-beach-9.jpg', alt: captions[8] || 'Coastal reference photograph' },
+    { src: '/gallery/corbu-beach-10.jpg', alt: captions[9] },
+    { src: '/gallery/corbu-beach-11.jpg', alt: captions[10] },
+    { src: '/gallery/corbu-beach-12.jpg', alt: captions[11] },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,11 +28,11 @@ export default function Gallery() {
 
   const goToPrevious = useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? photos.length - 1 : prev - 1));
-  }, []);
+  }, [photos.length]);
 
   const goToNext = useCallback(() => {
     setCurrentIndex((prev) => (prev === photos.length - 1 ? 0 : prev + 1));
-  }, []);
+  }, [photos.length]);
 
   const openLightbox = () => setIsLightboxOpen(true);
   const closeLightbox = () => setIsLightboxOpen(false);
@@ -98,7 +98,7 @@ export default function Gallery() {
 
             <div className="flex justify-center mt-6 gap-4 items-center">
               <a
-                href="https://maps.app.goo.gl/DNWLjcbrU9ps53RQ8"
+                href="https://maps.app.goo.gl/NAvHXzsTp3RxKvDk9"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm hover:underline"

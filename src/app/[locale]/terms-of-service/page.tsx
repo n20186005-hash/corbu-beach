@@ -1,29 +1,14 @@
+import { pageMetadata } from '@/lib/seo';
 import { setRequestLocale } from 'next-intl/server';
 import { useTranslations, useLocale, useMessages } from 'next-intl';
 import type { Metadata } from 'next';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  const baseUrl = 'https://warsawbarbican.info';
-  const zhUrl = `${baseUrl}/terms-of-service`;
-  const enUrl = `${baseUrl}/en/terms-of-service`;
-  const selfUrl = locale === 'zh' ? zhUrl : enUrl;
-
-  return {
-    alternates: {
-      canonical: selfUrl,
-      languages: {
-        'zh': zhUrl,
-        'en': enUrl,
-        'x-default': zhUrl,
-      },
-    },
-  };
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const {locale} = await params;
+  const messages = (await import(`@/messages/${locale === 'en' ? 'en' : 'zh'}.json`)).default;
+  return pageMetadata(locale, '/terms-of-service', messages.terms.title + ' | Corbu Beach', locale === 'en' ? 'Read the scope, information limitations and terms for using the Corbu Beach travel guide.' : '阅读科尔布海滩旅行指南的使用范围、信息限制与条款。');
 }
+
 
 function TermsContent() {
   const t = useTranslations('terms');

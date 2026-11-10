@@ -44,3 +44,9 @@ coverage/
 # Temporary files
 *.tmp
 *.temp
+
+# Cloudflare build output and local-only runtime data
+.open-next/
+.wrangler/
+.dev.vars
+.dev.vars.*

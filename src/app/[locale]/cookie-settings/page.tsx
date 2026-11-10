@@ -1,26 +1,12 @@
+import { pageMetadata } from '@/lib/seo';
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import CookieSettingsClient from './CookieSettingsClient';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const baseUrl = 'https://warsawbarbican.info';
-  const zhUrl = `${baseUrl}/cookie-settings`;
-  const enUrl = `${baseUrl}/en/cookie-settings`;
-
-  return {
-    alternates: {
-      canonical: zhUrl,
-      languages: {
-        'zh': zhUrl,
-        'en': enUrl,
-        'x-default': zhUrl,
-      },
-    },
-  };
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const {locale} = await params;
+  const messages = (await import(`@/messages/${locale === 'en' ? 'en' : 'zh'}.json`)).default;
+  return pageMetadata(locale, '/cookie-settings', messages.cookieSettings.title + ' | Corbu Beach', messages.cookieSettings.description);
 }
 
 export default async function CookiePage({

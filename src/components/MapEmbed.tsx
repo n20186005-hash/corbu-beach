@@ -20,12 +20,8 @@ export default function MapEmbed() {
           className="map-container relative rounded-xl overflow-hidden"
           style={{ border: '1px solid var(--map-border)' }}
         >
-          {/* 
-            NOTE: Google Maps attribution is hidden via CSS (.gm-style-cc, .gmnoprint).
-            This is for visual cleanliness only. Google's Terms of Service apply.
-          */}
           <iframe
-            src="https://maps.google.com/maps?q=Plaja+Corbu,+Constanta,+Romania&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            src="https://maps.google.com/maps?q=44.374104,28.7096917&t=&z=13&ie=UTF8&iwloc=&output=embed"
             width="100%"
             height="450"
             style={{ border: 0 }}
@@ -39,7 +35,7 @@ export default function MapEmbed() {
         {/* Open in Google Maps */}
         <div className="mt-6 flex justify-center">
           <a
-            href="https://maps.app.goo.gl/DNWLjcbrU9ps53RQ8"
+            href="https://maps.app.goo.gl/NAvHXzsTp3RxKvDk9"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-white transition-colors"

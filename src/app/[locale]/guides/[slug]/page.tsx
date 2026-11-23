@@ -191,13 +191,13 @@ export default async function GuidePage({params}:{params:Promise<{locale:string;
     ...(guide.image ? {image:guide.image.url} : {})
   };
 
-  return <><Header/><main className="pt-16">
+  return <><Header/><main className="pt-[72px]">
     <article>
-      <section className="relative overflow-hidden" style={{background:'var(--bg-secondary)'}}>
+      <section className="relative overflow-hidden min-h-[62vh] flex items-end" style={{background:'var(--bg-secondary)'}}>
         {guide.image ? <>
           <div className="absolute inset-0">
             <img src={guide.image.url} alt="" className="w-full h-full object-cover" loading="eager"/>
-            <div className="absolute inset-0 bg-black/55"/>
+            <div className="absolute inset-0" style={{background:'var(--hero-overlay)'}}/>
           </div>
           <div className="relative max-w-6xl mx-auto px-6 py-20 sm:py-28 text-white">
             <a href={localePath(locale)} className="inline-flex items-center gap-2 text-sm mb-10 text-white/80 hover:text-white">← {zh ? '返回 Corbu Beach 指南' : 'Back to Corbu Beach guide'}</a>
@@ -207,7 +207,7 @@ export default async function GuidePage({params}:{params:Promise<{locale:string;
             <div className="flex flex-wrap gap-3 text-sm">
               {guide.rating && <span className="rounded-full px-4 py-2 bg-white/15 backdrop-blur-sm">Google Maps {guide.rating}/5 · {guide.reviewCount || (zh ? '评价数未保存' : 'review count not stored')}</span>}
               {guide.hours && <span className="rounded-full px-4 py-2 bg-white/15 backdrop-blur-sm">{guide.hours}</span>}
-              <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="rounded-full px-4 py-2 bg-white text-black font-medium">{zh ? '查看位置' : 'View location'} ↗</a>
+              <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="rounded-full px-4 py-2 font-medium" style={{background:'var(--accent)',color:'#fff'}}>{zh ? '查看位置' : 'View location'} ↗</a>
             </div>
           </div>
         </> : <div className="max-w-6xl mx-auto px-6 py-20">
@@ -243,14 +243,18 @@ export default async function GuidePage({params}:{params:Promise<{locale:string;
               <p className="leading-relaxed" style={{color:'var(--text-secondary)'}}>{identity}</p>
               <p className="text-sm mt-5" style={{color:'var(--text-muted)'}}>{zh ? '资料核对：' + checked + '。管理安排、开放和现场规则可能变化。' : 'Sources checked ' + checked + '. Management, opening and on-site rules can change.'}</p>
             </div>
-            {guide.image && <figure>
-              <div className="overflow-hidden rounded-3xl" style={{border:'1px solid var(--border-color)'}}>
-                <img src={guide.image.url} alt={guide.image.alt} className="w-full h-auto object-cover" loading="lazy"/>
-              </div>
-              <figcaption className="text-xs mt-2" style={{color:'var(--text-muted)'}}>
-                {zh ? '实景照片来源：' : 'Photo source: '}<a href={guide.image.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline">{guide.image.credit} ↗</a>
-              </figcaption>
-            </figure>}
+            <aside className="rounded-3xl p-7 sm:p-8" style={{background:'var(--card-bg)',border:'1px solid var(--border-color)'}}>
+              <p className="text-xs uppercase tracking-[0.2em] mb-4" style={{color:'var(--accent)'}}>{zh ? '游览速览' : 'At a glance'}</p>
+              <p className="text-sm mb-2" style={{color:'var(--text-muted)'}}>{zh ? '地点类型' : 'Type of place'}</p>
+              <p className="font-semibold mb-5">{guide.category || (zh ? '区域景点' : 'Regional attraction')}</p>
+              <p className="text-sm mb-2" style={{color:'var(--text-muted)'}}>{zh ? '具体位置' : 'Location'}</p>
+              <p className="leading-relaxed mb-6">{guide.address}</p>
+              <p className="text-sm mb-2" style={{color:'var(--text-muted)'}}>{zh ? '参观重点' : 'What to notice'}</p>
+              <p className="leading-relaxed mb-6">{guide.highlights[0]}</p>
+              <a href={mapsUrl} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-5 py-3 rounded-full font-medium"
+                style={{background:'var(--accent)',color:'#fff'}}>{zh ? '查看景点地图' : 'View destination map'} ↗</a>
+            </aside>
           </div>
         </div>
       </section>

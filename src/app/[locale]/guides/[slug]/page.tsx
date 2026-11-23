@@ -31,6 +31,60 @@ function SectionHeading({eyebrow, title, description}:{eyebrow?:string;title:str
   </div>;
 }
 
+function getStayCards(slug:string, address:string, zh:boolean) {
+  const inMamaia = /mamaia/i.test(slug + ' ' + address);
+  const inCorbuVadu = /vadu|corbu/i.test(slug + ' ' + address);
+  const inOvidiuNavodari = /ovidiu|tasaul|năvodari|navodari/i.test(slug + ' ' + address);
+
+  if (inCorbuVadu) return zh ? [
+    {title:'靠近自然海岸：Corbu / Vadu 村落周边',tag:'减少海滩往返',desc:'适合把野生海岸作为行程核心的游客。预订前应向住宿方确认实际道路、停车、饮水、餐饮及是否能协助说明当前保护区进入条件。'},
+    {title:'服务更完整：Năvodari',tag:'餐饮与补给更方便',desc:'适合希望白天前往自然海岸、晚上回到商业与餐饮更完整区域的游客。应单独核对每天往返路线与最后一段海岸通行条件。'},
+    {title:'度假设施优先：Mamaia / Mamaia Nord',tag:'海滨住宿选择较多',desc:'适合把 Corbu 或 Vadu 作为半日/一日自然行程，同时希望享受度假区餐饮与海滨设施的游客。旺季交通和停车应预留余量。'},
+    {title:'城市文化组合：Constanța',tag:'适合博物馆与老城',desc:'如果行程还包括赌场、奥维德广场、博物馆和宗教建筑，住在康斯坦察更利于安排城市参观，再把自然海岸作为独立出游日。'}
+  ] : [
+    {title:'Closest to the wild coast: Corbu / Vadu village area',tag:'Less backtracking to the beach',desc:'Best when the protected coast is the main purpose of the trip. Before booking, ask the host about the actual road, parking, water, food and any current access guidance they can provide.'},
+    {title:'More everyday services: Năvodari',tag:'Easier food and supplies',desc:'Useful for visitors who want to spend the day on the natural coast but return to a more serviced town. Recheck the day’s route and the final permitted coastal approach separately.'},
+    {title:'Resort convenience: Mamaia / Mamaia Nord',tag:'Broader seaside accommodation choice',desc:'A practical base if Corbu or Vadu is a half-day or day trip and you prefer resort dining and facilities. Allow for peak-season traffic and parking.'},
+    {title:'Culture plus coast: Constanța',tag:'Best for museums and the old town',desc:'Choose Constanța if the itinerary also includes the Casino, Ovid Square, museums and religious heritage, then treat the wild coast as a separate excursion day.'}
+  ];
+
+  if (inMamaia) return zh ? [
+    {title:'海滩优先：Mamaia 海滨',tag:'步行到沙滩与度假设施',desc:'适合以海滩、缆车、水上乐园或度假区散步为主的行程。选择住宿时先确认离自己要去的海滩区段和具体入口有多远。'},
+    {title:'安静一些：Mamaia Nord / Năvodari',tag:'适合较长海滨停留',desc:'适合希望远离核心度假区最繁忙区段、同时保留海边住宿体验的游客。前往老城或南部景点时需要另算交通。'},
+    {title:'城市观光优先：Constanța 中心',tag:'老城与博物馆更方便',desc:'如果 Mamaia 只是一天中的一部分，而重点还包括历史半岛、赌场和博物馆，住在市中心通常更容易组织城市步行。'},
+    {title:'预订提示',tag:'价格随季节波动明显',desc:'夏季、周末和活动期需求上升较快。预订前确认停车、早餐、海滩距离、取消政策及淡季是否正常营业。'}
+  ] : [
+    {title:'Beach first: Mamaia seafront',tag:'Walkable to sand and resort facilities',desc:'Best when the beach, cable car, water park or resort promenade is the main focus. Check the exact beach sector and entrance rather than judging distance from a generic Mamaia address.'},
+    {title:'Quieter base: Mamaia Nord / Năvodari',tag:'Good for a longer seaside stay',desc:'Useful if you prefer a less central resort base while keeping a coastal setting. Trips to the old town and southern city attractions need separate transport planning.'},
+    {title:'City sightseeing first: central Constanța',tag:'Easier for the old town and museums',desc:'If Mamaia is only one part of the day and the historic peninsula, Casino and museums matter more, a central city base can simplify walking and urban transport.'},
+    {title:'Booking note',tag:'Strong seasonal price variation',desc:'Demand rises in summer, weekends and event periods. Confirm parking, breakfast, beach distance, cancellation terms and whether the property operates normally outside peak season.'}
+  ];
+
+  if (inOvidiuNavodari) return zh ? [
+    {title:'就近住宿：Ovidiu / Năvodari',tag:'减少区域景点往返',desc:'适合把湖泊、Ovidiu 考古点或北部海岸作为重点的游客。预订前确认住宿到实际公共入口的路线，而不是只看直线距离。'},
+    {title:'海滨度假：Mamaia / Mamaia Nord',tag:'兼顾湖泊与海滩',desc:'适合希望白天探索湖泊、考古或 Năvodari 一带，晚上回到海滨度假区的游客。'},
+    {title:'城市文化：Constanța',tag:'适合加入老城行程',desc:'如果还计划参观博物馆、赌场、宗教建筑与历史住宅，住在康斯坦察可减少城市景点之间的移动。'},
+    {title:'预订提示',tag:'核对停车与道路',desc:'湖区和考古点的最后一段路况不一定与住宿平台显示一致，应向住宿方确认停车和雨后道路情况。'}
+  ] : [
+    {title:'Stay nearby: Ovidiu / Năvodari',tag:'Less regional backtracking',desc:'Good when the lakes, Ovidiu archaeology or northern coast are the priority. Confirm the real public-access route from the property rather than relying on straight-line distance.'},
+    {title:'Seaside base: Mamaia / Mamaia Nord',tag:'Combine lake and beach time',desc:'Useful if you want to explore lakes, archaeology or Năvodari by day and return to a resort environment in the evening.'},
+    {title:'Culture base: Constanța',tag:'Best for adding the old town',desc:'Choose the city if the itinerary also includes museums, the Casino, religious buildings and historic houses; this reduces movement between urban sights.'},
+    {title:'Booking note',tag:'Check parking and road conditions',desc:'The final road to lake and archaeology viewpoints may differ from accommodation-platform assumptions. Ask about parking and wet-weather road conditions.'}
+  ];
+
+  return zh ? [
+    {title:'老城步行优先：历史半岛 / Piața Ovidiu 周边',tag:'适合密集文化景点',desc:'适合把奥维德广场、赌场、教堂、清真寺、历史住宅和海滨作为重点的游客。许多景点可步行串联，但停车条件应单独确认。'},
+    {title:'交通与生活便利：Constanța 市中心',tag:'餐饮与公共交通更均衡',desc:'适合想兼顾博物馆、购物、餐饮与不同城区景点的游客。选择靠近主要公共交通或步行轴线的位置通常比只追求海景更实用。'},
+    {title:'海滨度假组合：Mamaia',tag:'白天城市、晚上度假区',desc:'适合把历史文化景点作为白天行程、住宿更偏好海滨度假氛围的游客，但每天进入老城要预留交通时间。'},
+    {title:'预订提示',tag:'先看步行与停车条件',desc:'历史城区街道较紧凑。自驾游客应先确认住宿停车和进出规则；步行游客则应优先考虑与计划景点之间的实际步行路线。'}
+  ] : [
+    {title:'Old-town walking base: historic peninsula / Piața Ovidiu',tag:'Best for dense heritage sightseeing',desc:'Ideal for Ovid Square, the Casino, churches, mosques, historic houses and the seafront. Many sights can be linked on foot, but parking should be checked independently.'},
+    {title:'Balanced city base: central Constanța',tag:'Food and public transport nearby',desc:'A practical choice for mixing museums, dining, shopping and different city districts. Proximity to a useful walking or transit corridor can matter more than a sea view.'},
+    {title:'Resort combination: Mamaia',tag:'City by day, resort by evening',desc:'Works if cultural sightseeing is mainly a daytime activity and you prefer a seaside-resort atmosphere at night, but allow time for each trip into the historic centre.'},
+    {title:'Booking note',tag:'Check walking and parking before paying',desc:'Historic streets are compact. Drivers should confirm parking and access rules; walkers should compare the real walking route to the attractions they plan to visit.'}
+  ];
+}
+
 export default async function GuidePage({params}:{params:Promise<{locale:string;slug:string}>}) {
   const {locale, slug} = await params;
   const guide = guides[locale]?.find(g => g.slug === slug);
@@ -48,19 +102,55 @@ export default async function GuidePage({params}:{params:Promise<{locale:string;
   const visitTips = [guide.hours, guide.tickets, guide.transport, guide.visitorNotes?.[0]].filter(Boolean) as string[];
 
   const storySections = guide.sections.length >= 4 ? guide.sections.slice(0,4) : [
-    {title: zh ? '历史与地点背景' : 'History and place context', paragraphs:[identity]},
-    {title: zh ? '建筑／景观特色' : 'Architecture / landscape features', paragraphs:[observation]},
-    {title: zh ? '文化与游览意义' : 'Cultural significance', paragraphs:[guide.management || (zh ? '该地点的使用与保护方式应以当前管理方和现场规则为准。' : 'Use and conservation should follow the current responsible authority and on-site rules.')]},
-    {title: zh ? '核心体验' : 'Core experience', paragraphs:[planning]}
+    {
+      title: zh ? '历史与地点背景' : 'History and place context',
+      paragraphs:[
+        identity,
+        zh
+          ? '理解这里时，不应只看单一地标本身；' + guide.title + ' 与 ' + guide.address + ' 的城市、海岸或社区环境共同构成参观背景。' + (guide.management ? ' 当前使用与保护方式也与其管理主体直接相关：' + guide.management : '')
+          : 'This place is best understood in its wider setting rather than as an isolated marker. ' + guide.title + ' is shaped by the urban, coastal or community context around ' + guide.address + '.' + (guide.management ? ' Its present use and conservation are also tied to the responsible site context: ' + guide.management : '')
+      ]
+    },
+    {
+      title: zh ? '建筑／景观特色' : 'Architecture / landscape features',
+      paragraphs:[
+        observation,
+        zh
+          ? '现场观察时可把“整体轮廓—主要结构—细节材料—周边环境”作为顺序，并重点对照这三项特征：' + guide.highlights.join('；')
+          : 'A useful viewing sequence is overall form, main structure, material/detail, then setting. Compare these specific characteristics on site: ' + guide.highlights.join('; ')
+      ]
+    },
+    {
+      title: zh ? '文化与游览意义' : 'Cultural significance',
+      paragraphs:[
+        guide.management || (zh ? '该地点的使用与保护方式应以当前管理方和现场规则为准。' : 'Use and conservation should follow the current responsible authority and on-site rules.'),
+        zh
+          ? '对游客而言，它的价值不只是“看一眼”的打卡点，而是帮助理解康斯坦察及北部海岸在自然、港口、宗教、考古或度假文化上的不同层次。参观时应把现场仍在使用的功能与历史遗产区分开来。'
+          : 'For visitors, its value goes beyond a quick photo stop: it helps explain a specific layer of Constanța and the northern coast, whether natural, maritime, religious, archaeological or resort-related. Current everyday use should be distinguished from historic interpretation.'
+      ]
+    },
+    {
+      title: zh ? '核心体验' : 'Core experience',
+      paragraphs:[
+        planning,
+        zh
+          ? '最有效的参观方式是先确认开放与进入条件，再用本页的专属地图抵达正确位置；现场先建立方向感，随后观察最具辨识度的结构或景观，最后再决定是否加入周边景点。'
+          : 'The most useful visit starts by confirming opening and access, then navigating to the exact destination with this page’s map link. Establish orientation first, focus on the site’s most distinctive structure or landscape, and only then decide whether to add nearby stops.'
+      ]
+    }
   ];
+
+  const stayCards = getStayCards(slug, guide.address, zh);
 
   const routeSteps = [
     zh ? '出发前先确认：' + (guide.hours || '查看当天开放与现场限制。') : 'Before leaving, confirm: ' + (guide.hours || 'check same-day opening and site restrictions.'),
     zh ? '导航到正确地点：' + (guide.transport || ('使用 ' + guide.title + ' 的专属地图搜索。')) : 'Navigate to the correct destination: ' + (guide.transport || ('use the dedicated map search for ' + guide.title + '.')),
-    zh ? '先建立整体印象：' + (guide.highlights[0] || identity) : 'Start with the overall setting: ' + (guide.highlights[0] || identity),
-    zh ? '进入主要观察区：' + (guide.highlights[1] || observation) : 'Move to the main observation point: ' + (guide.highlights[1] || observation),
-    zh ? '留意细节与环境关系：' + (guide.highlights[2] || observation) : 'Read the details in context: ' + (guide.highlights[2] || observation),
-    zh ? '结束前复核返程与现场规则，并按管理方要求离开。' : 'Before leaving, recheck your return plan and follow the responsible site’s current rules.'
+    zh ? '抵达后先建立方向感：确认入口、公共通道、禁止进入区域及返程方向。' : 'On arrival, establish orientation: identify the entrance, public route, restricted areas and return direction.',
+    zh ? '先看整体：' + (guide.highlights[0] || identity) : 'Read the overall setting first: ' + (guide.highlights[0] || identity),
+    zh ? '再看主要特征：' + (guide.highlights[1] || observation) : 'Then focus on the principal feature: ' + (guide.highlights[1] || observation),
+    zh ? '最后看细节：' + (guide.highlights[2] || observation) : 'Finish with the details: ' + (guide.highlights[2] || observation),
+    zh ? '选择一个不干扰通行、礼拜、保护或运营的位置完成全景与细节摄影。' : 'Choose a lawful position that does not obstruct circulation, worship, conservation or operations for overview and detail photographs.',
+    zh ? '结束前复核返程、天气和现场规则；若继续前往周边景点，再单独打开下一地点的地图。' : 'Before leaving, recheck the return plan, weather and site rules. If continuing to another attraction, open that destination’s map separately.'
   ];
 
   const photoSpots = [
@@ -68,10 +158,15 @@ export default async function GuidePage({params}:{params:Promise<{locale:string;
       name: zh ? guide.title + ' 全景' : guide.title + ' overview',
       desc: zh ? '先用较宽视角记录地点与周边环境的关系：' + (guide.highlights[0] || guide.category || guide.title) : 'Use a wider frame to show the destination in context: ' + (guide.highlights[0] || guide.category || guide.title)
     },
-    {name: zh ? '建筑／景观细节' : 'Architecture / landscape details', desc: observation},
+    {name: zh ? '主要建筑／景观特征' : 'Principal architectural / landscape feature', desc: guide.highlights[1] || observation},
+    {name: zh ? '材质、装饰或自然纹理' : 'Material, ornament or natural texture', desc: observation},
     {
       name: zh ? '环境关系与方向感' : 'Setting and orientation',
       desc: zh ? '从公共且允许停留的位置，把 ' + guide.address + ' 一带的街道、海岸、湖面或周边建筑纳入构图。' : 'From lawful public space, include streets, shore, water or surrounding buildings around ' + guide.address + ' to give the photograph a sense of place.'
+    },
+    {
+      name: zh ? '离开前的反向视角' : 'Reverse view before leaving',
+      desc: zh ? '沿返程方向再回看一次地点，常能得到与正面入口不同的空间层次；只使用允许停留的公共位置。' : 'Look back along the return direction for a different spatial relationship from the main approach, using only permitted public stopping points.'
     }
   ];
 
@@ -240,6 +335,21 @@ export default async function GuidePage({params}:{params:Promise<{locale:string;
           </figure>
         </div>
       </section>}
+
+      <section className="max-w-6xl mx-auto px-6 py-14 sm:py-20">
+        <SectionHeading
+          title={zh ? '住宿建议' : 'Accommodation'}
+          description={zh ? '不把住宿平台价格写死，也不虚构“官方推荐酒店”。以下建议按景点所在区域与行程结构选择住宿位置，实际房价、停车、早餐和营业状态应在预订时确认。' : 'Rather than freezing platform prices or inventing “official hotel recommendations,” these options focus on the most practical areas for this destination. Confirm live rates, parking, breakfast and operating status when booking.'}
+        />
+        <div className="grid md:grid-cols-2 gap-5">
+          {stayCards.map(card=><div key={card.title} className="rounded-2xl p-6" style={{background:'var(--bg-tertiary)',border:'1px solid var(--border-color)'}}>
+            <p className="text-xs uppercase tracking-[0.16em] mb-2" style={{color:'var(--accent)'}}>{card.tag}</p>
+            <h3 className="text-xl font-semibold mb-3">{card.title}</h3>
+            <p className="leading-relaxed" style={{color:'var(--text-secondary)'}}>{card.desc}</p>
+            <p className="text-sm mt-4" style={{color:'var(--text-muted)'}}>{zh ? '价格：随日期、季节与房型变化' : 'Price: varies by date, season and room type'}</p>
+          </div>)}
+        </div>
+      </section>
 
       <section className="max-w-6xl mx-auto px-6 py-14 sm:py-20">
         <SectionHeading title={zh ? '常见问题' : 'Frequently asked questions'} />

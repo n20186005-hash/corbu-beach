@@ -11,7 +11,8 @@
     "check:content": "node scripts/check-content.mjs",
     "build:worker": "npm run build",
     "preview:local": "wrangler dev --local",
-    "build:next": "next build"
+    "build:next": "next build",
+    "check:locales": "node scripts/check-locales.mjs"
   },
   "dependencies": {
     "next": "15.5.29",

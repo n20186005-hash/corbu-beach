@@ -12,8 +12,10 @@ base = Path(__file__).resolve().parent
 source = json.loads((base / args.kind / 'reference.json').read_text())
 data = dict(lang=args.lang, title='', description='', canonical='',
             sections=source['sections'], values=dict.fromkeys(source['values'], ''))
-if args.kind == 'home':
-    data.update(nearbyHeading='', nearby=[])
+if args.kind == 'guide':
+    data['sections'].remove('management')
+    data['sections'].insert(1, 'management')
+data.update(nearbyHeading='', nearby=[], photos=[], photoHeading='', photoFallback='')
 args.output.parent.mkdir(parents=True, exist_ok=True)
 with args.output.open('x') as stream:
     json.dump(data, stream, ensure_ascii=False, indent=2)

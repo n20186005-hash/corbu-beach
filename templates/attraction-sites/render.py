@@ -22,6 +22,36 @@ def checked_link(value, local=False):
     return value
 
 
+def photo_section(data):
+    photos = data['photos']
+    heading = html.escape(data['photoHeading'])
+    figures = []
+    for photo in photos:
+        image = html.escape(checked_link(photo['src']), quote=True)
+        credit = html.escape(checked_link(photo['source']), quote=True)
+        if not image or not credit or not photo['alt'].strip() or not photo['credit'].strip():
+            raise ValueError('Each photograph needs a file, alt text, credit and source.')
+        figures.append(f'<figure class="max-w-4xl"><img class="rounded-3xl w-full h-auto" loading="lazy" '
+                       f'src="{image}" alt="{html.escape(photo["alt"], quote=True)}">'
+                       f'<figcaption><a class="underline" href="{credit}">{html.escape(photo["credit"])}</a></figcaption></figure>')
+    content = ''.join(figures) or '<p>' + html.escape(data['photoFallback']) + '</p>'
+    return f'<section class="max-w-6xl mx-auto px-6 py-14"><h2 class="text-3xl font-semibold">{heading}</h2>{content}</section>'
+
+
+def nearby_section(data):
+    cards = []
+    for place in data['nearby']:
+        href = checked_link(place['path'], local=True)
+        if not href.startswith('/') or not place['label'].strip():
+            raise ValueError('Nearby links need a site-local path and a destination name.')
+        cards.append('<a class="block rounded-2xl p-6" style="background:var(--card-bg);border:1px solid var(--border-color)" '
+                     f'href="{html.escape(href, quote=True)}">{html.escape(place["label"])}</a>')
+    if not cards:
+        return ''
+    return ('<section class="section-padding"><div class="max-w-6xl mx-auto"><h2 class="text-3xl font-semibold">'
+            + html.escape(data['nearbyHeading']) + '</h2><div class="grid md:grid-cols-3 gap-6">' + ''.join(cards) + '</div></div></section>')
+
+
 def render(kind, data, example=False):
     if data.get('example') and not example:
         raise ValueError('Use --example for the source fixture, or supply your own localized data.')
@@ -36,7 +66,6 @@ def render(kind, data, example=False):
     order = data['sections']
     if len(set(order)) != len(order) or order.count('hero') != 1:
         raise ValueError('Each section must be unique, including exactly one hero.')
-    body = '\n'.join(blocks[name] for name in order)
     values = data['values']
 
     def substitute(match):
@@ -44,9 +73,11 @@ def render(kind, data, example=False):
         value = values[key]
         if not isinstance(value, str):
             raise TypeError(f'{key} must be text')
-        if not value.strip():
-            raise ValueError(f'Fill or remove the empty slot: {key}')
         role = key.split('.')[1]
+        if role == 'src' and not value.strip() and not key.startswith('directions.'):
+            return html.escape(IMAGE, quote=True)
+        if not value.strip() and role != 'alt':
+            raise ValueError(f'Fill or remove the empty slot: {key}')
         if role in ('href', 'src'):
             if not value.strip():
                 raise ValueError(f'Missing URL: {key}')
@@ -55,16 +86,19 @@ def render(kind, data, example=False):
                 value = 'about:blank' if key.startswith('directions.') else IMAGE
         return html.escape(value, quote=True)
 
-    body = SLOT.sub(substitute, body)
+    parts = []
+    for name in order:
+        if name == ('gallery' if kind == 'home' else 'photography') and 'photos' in data:
+            parts.append(photo_section(data))
+        elif name == 'nearby' and 'nearby' in data:
+            parts.append(nearby_section(data))
+        else:
+            parts.append(SLOT.sub(substitute, blocks[name]))
+    if 'nearby' in data and 'nearby' not in order:
+        parts.append(nearby_section(data))
+    body = '\n'.join(parts)
     if kind == 'guide':
         body = '<article>' + body + '</article>'
-    nearby = data.get('nearby', [])
-    if nearby:
-        items = ''.join('<li><a href="{}">{}</a></li>'.format(
-            html.escape(checked_link(item['path'], local=True), quote=True),
-            html.escape(item['label'])) for item in nearby)
-        body += '<section class="max-w-6xl mx-auto px-6 py-14"><h2>{}</h2><ul>{}</ul></section>'.format(
-            html.escape(data['nearbyHeading']), items)
     css = (folder / 'theme.css').read_text()
     esc = html.escape
     canonical = checked_link(data['canonical'])

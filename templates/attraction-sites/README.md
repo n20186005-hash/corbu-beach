@@ -19,7 +19,7 @@ python3 render.py guide guide/reference.json preview/guide.html --example
 ## 接入新仓库
 
 1. 在目标仓库使用独立数据集。运行 `python3 init.py guide data/place.zh.json --lang zh-Hant` 可建空白景点资料文件。首页使用 `home`。参考文件的同名键说明各槽位在原版中的用途。按来源拍摄或取得当地图片，填写目标景点自己的地图、地址、管理方、开放和票务条件、评价来源及核对日期。
-2. `sections` 指定显示的分区与顺序。要将管理主体紧接首屏，在景点页中将 `management` 放到 `hero` 后。某分区没有有效资料可移出 `sections`。通过修改相应的 HTML 片段和数据映射增减卡片、照片、FAQ 或路线步骤。不同目标站共用样式与页面结构，每个地点单独维护事实。
+2. `sections` 指定显示的分区与顺序。新建景点默认将管理主体紧接首屏。已有配置可将 `management` 放到 `hero` 后。某分区没有有效资料可移出 `sections`。照片用 photos 数组自动绘制。每项填写 src、alt、credit 和 source，标题用 photoHeading。零张照片时填写 photoFallback；首图为空时使用无图占位。FAQ 或路线步骤可在对应 HTML 片段和数据映射中增减。不同目标站共用样式与页面结构，每个地点单独维护事实。
 3. 用 `python3 render.py guide data/place.zh.json public/zh/guides/example/index.html` 可生成正式静态页面。多语站每个 locale 用一份数据，沿用目标站的链接策略、导航、页脚、互译链接、结构化数据及 sitemap。现有 Astro/Next 项目也可将对应分区移植到现有组件并直接绑定站内数据集合。
 4. 页面的 `nearby` 数组支持任意数量的站内链接。每项使用 `{"label":"景点名","path":"/zh/guides/地点/"}`，栏目标题使用 `nearbyHeading`。现有组件已提供周边入口的项目，可直接循环同一景点集合。相册轮播、主题切换、导航、地图同意管理等互动沿用宿主组件。示例 HTML 只导出正文。
 5. 全页保留一个 H1，检查全部实际语种、地图搜索对象、图片署名、二级页的管理范围、移动端和桌面端。首页原照片继续使用原路径。与 `reference.json` 相同的地点事实只适用于原景点。生产导出需要单独的数据文件。

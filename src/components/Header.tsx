@@ -36,6 +36,13 @@ export default function Header() {
         </a>
 
         <nav className="hidden md:flex items-center gap-6">
+          <a
+            href={localePath(locale, '/guides')}
+            className="text-sm font-medium transition-colors"
+            style={{ color: (scrolled || subpage) ? 'var(--text-secondary)' : 'rgba(255,255,255,0.85)' }}
+          >
+            {locale === 'zh' ? '周边景点' : 'Nearby'}
+          </a>
           {(['gallery', 'reviews', 'map'] as const).map((section) => (
             <a
               key={section}

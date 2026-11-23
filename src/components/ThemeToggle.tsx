@@ -1,9 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import {useLocale} from 'next-intl';
 
 export default function ThemeToggle() {
   const [dark, setDark] = useState(false);
+  const locale = useLocale();
 
   useEffect(() => {
     const saved = localStorage.getItem('theme');
@@ -28,9 +30,9 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      className="p-2 rounded-md transition-colors"
+      className="w-10 h-10 flex-shrink-0 inline-flex items-center justify-center rounded-lg transition-colors"
       style={{ background: 'var(--tag-bg)', color: 'var(--tag-text)' }}
-      aria-label="Toggle theme"
+      aria-label={locale === 'zh' ? '切换明暗主题' : 'Toggle light or dark theme'}
     >
       {dark ? (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

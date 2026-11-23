@@ -1,0 +1,29 @@
+name: Verify live Corbu Beach release
+on:
+  push:
+    branches: [verify-corbubeach-release-20261123]
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check production pages after Cloudflare deploy
+        shell: bash
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 24); do
+            echo "Production smoke attempt $i"
+            if curl -fsSL --max-time 25 https://www.corbubeach.com/en/guides -o /tmp/corbu-en.html &&
+               curl -fsSL --max-time 25 https://www.corbubeach.com/guides -o /tmp/corbu-zh.html &&
+               curl -fsSL --max-time 25 https://www.corbubeach.com/en/guides/vadu-beach -o /tmp/corbu-vadu.html &&
+               grep -q 'Nearby places and regional guides' /tmp/corbu-en.html &&
+               grep -q '周边景点与区域指南' /tmp/corbu-zh.html &&
+               grep -q 'Vadu Beach' /tmp/corbu-vadu.html; then
+              echo "LIVE_DEPLOYMENT_VERIFIED"
+              echo "EN guide, ZH guide, Vadu detail: HTTP 200 and expected page content."
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "Live deployment still not verified."
+          exit 1

@@ -33,7 +33,7 @@ export default function Footer() {
                 ARBDD
               </a>
               <a href="https://permise.ddbra.ro/" target="_blank" rel="noopener noreferrer" className="hover:underline text-sm" style={{ color: 'var(--accent)' }}>
-                ARBDD permits
+                {locale === 'zh' ? 'ARBDD 进入许可' : 'ARBDD permits'}
               </a>
               <a href="https://patrimoniu.ro/" target="_blank" rel="noopener noreferrer" className="hover:underline text-sm" style={{ color: 'var(--accent)' }}>
                 CIMEC

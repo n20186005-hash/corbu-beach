@@ -8,7 +8,11 @@
     "gallery": "Gallery",
     "reviews": "Reviews",
     "map": "Map",
-    "backToHome": "Back to Home"
+    "backToHome": "Back to Home",
+    "nearby": "Nearby",
+    "navigation": "Site navigation",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu"
   },
   "hero": {
     "title": "Corbu Beach",
@@ -494,9 +498,9 @@
     "openMaps": "Open the exact beach pin"
   },
   "corbuRecommendations": {
-    "title": "探索更多",
-    "attractionsTitle": "附近景点",
-    "toursTitle": "推荐行程与活动",
+    "title": "Explore more",
+    "attractionsTitle": "Nearby attractions",
+    "toursTitle": "Suggested trips and activities",
     "attractions": [],
     "tours": []
   }

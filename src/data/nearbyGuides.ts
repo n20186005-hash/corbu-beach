@@ -4712,4 +4712,4 @@ export const nearbyGuides = {
       ]
     }
   ]
-} as const;
+};

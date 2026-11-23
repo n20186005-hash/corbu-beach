@@ -1,3 +1,5 @@
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { pageMetadata } from '@/lib/seo';
 import { setRequestLocale } from 'next-intl/server';
 import { useTranslations, useLocale, useMessages } from 'next-intl';
@@ -63,5 +65,5 @@ export default async function PrivacyPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <PrivacyContent />;
+  return <><Header/><div className="pt-[72px]"><PrivacyContent/></div><Footer/></>;
 }

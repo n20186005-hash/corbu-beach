@@ -8,7 +8,11 @@
     "gallery": "图库",
     "reviews": "评价",
     "map": "地图",
-    "backToHome": "返回首页"
+    "backToHome": "返回首页",
+    "nearby": "周边景点",
+    "navigation": "网站导航",
+    "openMenu": "打开导航菜单",
+    "closeMenu": "关闭导航菜单"
   },
   "hero": {
     "title": "科尔布海滩",

@@ -1,3 +1,5 @@
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { pageMetadata } from '@/lib/seo';
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
@@ -16,5 +18,5 @@ export default async function CookiePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <CookieSettingsClient />;
+  return <><Header/><div className="pt-[72px]"><CookieSettingsClient/></div><Footer/></>;
 }

@@ -11,6 +11,8 @@ export const routing = defineRouting({
     '/privacy-policy': '/privacy-policy',
     '/terms-of-service': '/terms-of-service',
     '/cookie-settings': '/cookie-settings',
+    '/guides': '/guides',
+    '/guides/[slug]': '/guides/[slug]',
     '/corbu-beach': '/corbu-beach',
     '/corbu-beach/privacy-policy': '/corbu-beach/privacy-policy',
     '/corbu-beach/terms-of-service': '/corbu-beach/terms-of-service',

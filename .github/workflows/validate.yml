@@ -1,0 +1,21 @@
+name: Validate Corbu Beach
+on:
+  push:
+    branches: [main, expand-nearby-20261123]
+  pull_request:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run check:content
+      - run: npm run check:locales
+      - run: npm run typecheck
+      - run: npm run build:next

@@ -1,11 +1,23 @@
+import { nearbyGuides } from './nearbyGuides';
 export type Guide = {
  slug: string; title: string; description: string; intro: string;
  highlights: string[]; sections: {title:string; paragraphs:string[]; source?:number}[];
  address:string; mapQuery:string; sources:{label:string;url:string}[];
+ category?: string;
+ rating?: string;
+ reviewCount?: string;
+ ratingChecked?: string;
+ management?: string;
+ hours?: string;
+ tickets?: string;
+ transport?: string;
+ image?: {url:string; alt:string; credit:string; sourceUrl:string};
+ visitorNotes?: string[];
 };
 const minacSchedule = {label:'MINAC — current schedule and tickets',url:'https://minac.ro/en/program-tarife/'};
 export const guides: Record<string, Guide[]> = {
  en: [
+  ...nearbyGuides.en,
   {
    slug:'histria', title:'Histria: the ancient city and its museum',
    description:'Understand Histria’s Greco-Roman ruins, on-site museum and separate entry arrangements before planning a cultural visit in the Corbu region.',
@@ -50,6 +62,7 @@ export const guides: Record<string, Guide[]> = {
   }
  ],
  zh: [
+  ...nearbyGuides.zh,
   {
    slug:'histria',title:'希斯特里亚 Histria：古城遗址与现场博物馆',description:'了解Histria希腊罗马遗址、现场博物馆及分开售票的安排，再规划科尔布区域的文化游览。',
    intro:'想从海滨风景转向古代历史，可以研究 Histria 的古城遗址与出土文物。它是区域内独立的文化目的地；先确认参观安排，再判断如何与自己的科尔布行程衔接。',

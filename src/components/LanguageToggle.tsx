@@ -55,12 +55,12 @@ export default function LanguageToggle() {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors"
+        className="h-10 inline-flex items-center justify-center gap-1.5 px-2.5 sm:px-3 rounded-lg text-sm font-medium transition-colors whitespace-nowrap"
         style={{
           background: 'var(--tag-bg)',
           color: 'var(--tag-text)',
         }}
-        aria-label="Switch language" aria-expanded={open}
+        aria-label={locale === 'zh' ? '切换语言' : 'Switch language'} aria-expanded={open} aria-controls="corbu-language-menu"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="10"/>
@@ -75,7 +75,7 @@ export default function LanguageToggle() {
 
       {open && (
         <div
-          className="absolute right-0 mt-2 w-40 rounded-lg shadow-lg overflow-hidden z-50"
+          id="corbu-language-menu" className="absolute right-0 mt-2 w-40 rounded-lg shadow-lg overflow-hidden z-50"
           style={{ background: 'var(--card-bg)', border: '1px solid var(--border-color)' }}
         >
           {routing.locales.map((loc) => (

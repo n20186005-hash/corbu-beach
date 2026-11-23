@@ -98,3 +98,77 @@ export const guides: Record<string, Guide[]> = {
   }
  ]
 };
+
+
+const commonsPhoto = (file:string) => ({
+  url: `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=1600`,
+  sourceUrl: `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file)}`
+});
+
+const legacyGuideEnhancements: Record<string, Record<string, Partial<Guide>>> = {
+  en: {
+    histria: {
+      category:'Archaeological site and museum',
+      management:'Managed within the Museum of National History and Archaeology Constanța (MINAC) system; the archaeological site and on-site museum have their own visitor arrangements.',
+      hours:'For the 2026–27 cold season, MINAC lists Histria daily 09:00–17:00. Recheck the live schedule before departure.',
+      tickets:'MINAC lists the museum and fortress/site as separate entries; confirm the current ticket combination you need.',
+      transport:'Use the dedicated Histria Museum Complex destination and confirm your road/transfer from Corbu separately. The map pin does not establish a direct public-transport connection.',
+      image:{...commonsPhoto('Situl arheologic „Cetatea Histria”, vedere de ansamblu surprinsă din aeronavă.jpg'),alt:'Aerial real-location photograph of the Histria archaeological site',credit:'Wikimedia Commons'},
+      visitorNotes:['Stay on marked visitor routes and outside active excavation areas.','Confirm whether your ticket covers the museum, ruins or both.','Prepare for exposed outdoor weather and uneven archaeological surfaces.']
+    },
+    'roman-mosaic': {
+      category:'Archaeological museum and protected Roman monument',
+      management:'Managed within the MINAC museum system; visitor access is controlled to protect the mosaic and ancient structure.',
+      hours:'For the 2026–27 cold season, MINAC lists the Roman Edifice with Mosaic Wednesday–Sunday 09:00–17:00. Recheck the live programme.',
+      tickets:'Use the current MINAC ticket information for this specific monument; do not confuse it with the central museum building.',
+      transport:'Navigate to the Roman Edifice with Mosaic at the Ovid Square / Termele Romane area and use the monument’s own visitor entrance.',
+      image:{...commonsPhoto('Constanta - Muzeu Mozaic - Edificiul roman cu mozaic.jpg'),alt:'Real-location photograph of the Roman Edifice with Mosaic in Constanța',credit:'Wikimedia Commons'},
+      visitorNotes:['Use the monument’s own entrance and current MINAC ticket.','Follow barriers around protected ancient surfaces.','Check photography and accessibility conditions on arrival.']
+    },
+    'constanta-casino': {
+      category:'Art Nouveau landmark and cultural venue',
+      management:'Operated as a cultural visitor venue at the restored Constanța Casino; room access, events and ticketing are controlled by the venue operator.',
+      hours:'The operator programme checked in November 2026 showed Wednesday–Monday 10:00–18:00, Tuesday closed, with date-specific exceptions. Recheck before visiting.',
+      tickets:'Interior access requires the current venue ticket/programme. Exterior viewing from the public seafront is separate.',
+      transport:'Navigate to Cazinoul Constanța, Bd. Regina Elisabeta 4. Old-town traffic and parking can change, so plan the final approach separately.',
+      image:{...commonsPhoto('CasinoCT2026.jpg'),alt:'Constanța Casino after restoration, photographed in 2026',credit:'Wikimedia Commons'},
+      visitorNotes:['Exterior promenade access and interior ticketing are separate.','Check temporary room closures and event restrictions.','Use the Constanța Casino pin, not the historic Mamaia Casino.']
+    }
+  },
+  zh: {
+    histria: {
+      category:'考古遗址与现场博物馆',
+      management:'纳入康斯坦察国家历史与考古博物馆（MINAC）体系管理；考古遗址与现场博物馆有各自参观安排。',
+      hours:'MINAC 2026–27 冬季安排显示 Histria 每日 09:00–17:00；出发前再次查看实时时间表。',
+      tickets:'MINAC 将博物馆与城址/遗址列为不同参观项目，请确认当前需要购买的票种组合。',
+      transport:'使用 Histria Museum Complex 独立目的地地图，并单独确认从 Corbu 出发的道路或接驳；地图位置不代表存在直达公共交通。',
+      image:{...commonsPhoto('Situl arheologic „Cetatea Histria”, vedere de ansamblu surprinsă din aeronavă.jpg'),alt:'Histria 考古遗址实景航拍照片',credit:'Wikimedia Commons'},
+      visitorNotes:['沿标记游客路线活动，不进入正在发掘的区域。','确认门票覆盖博物馆、遗址或两者。','露天遗址日晒风大且地面不平，应准备合适鞋服。']
+    },
+    'roman-mosaic': {
+      category:'考古博物馆与受保护罗马遗迹',
+      management:'纳入 MINAC 博物馆体系管理；游客进入受到控制，以保护马赛克与古代建筑。',
+      hours:'MINAC 2026–27 冬季安排显示罗马马赛克建筑周三至周日 09:00–17:00；请再次查看实时安排。',
+      tickets:'使用该遗址对应的当前 MINAC 票务信息，不要与中央博物馆建筑混淆。',
+      transport:'导航至 Ovid Square / Termele Romane 一带的 Edificiul Roman cu Mozaic，并使用该遗址自己的游客入口。',
+      image:{...commonsPhoto('Constanta - Muzeu Mozaic - Edificiul roman cu mozaic.jpg'),alt:'康斯坦察罗马马赛克建筑实景照片',credit:'Wikimedia Commons'},
+      visitorNotes:['使用遗址自己的入口与当前 MINAC 门票。','遵守古代地面与墙体周围的保护围挡。','到达后确认摄影和无障碍条件。']
+    },
+    'constanta-casino': {
+      category:'新艺术风格地标与文化场馆',
+      management:'修复后的康斯坦察赌场作为文化参观场馆运营；房间开放、活动与票务由场馆运营方管理。',
+      hours:'2026年11月核对的运营安排显示周三至周一 10:00–18:00、周二关闭，并存在特定日期例外；参观前应重新确认。',
+      tickets:'进入室内需要使用场馆当前票务/活动安排；从公共海滨看外观则属于另一种参观方式。',
+      transport:'导航 Cazinoul Constanța, Bd. Regina Elisabeta 4。老城交通与停车可能变化，最后一段应单独规划。',
+      image:{...commonsPhoto('CasinoCT2026.jpg'),alt:'2026年拍摄的修复后康斯坦察赌场实景照片',credit:'Wikimedia Commons'},
+      visitorNotes:['公共海滨外观参观与室内购票是两回事。','查看临时房间关闭与活动限制。','不要与 Mamaia 历史赌场建筑混淆。']
+    }
+  }
+};
+
+for (const locale of ['en','zh']) {
+  guides[locale] = guides[locale].map(guide => {
+    const extra = legacyGuideEnhancements[locale]?.[guide.slug];
+    return extra ? {...guide,...extra} : guide;
+  });
+}
